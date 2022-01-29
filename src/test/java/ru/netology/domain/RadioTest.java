@@ -20,6 +20,28 @@ class RadioTest {
     }
 
     @Test
+    public void selectRadioStationAboveInterval() {
+        Radio cond = new Radio();
+        cond.setSelectRadioStation(10);
+
+        int expected = 0;
+        int actual = cond.getPrevRadioStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void selectRadioStationBelowInterval() {
+        Radio cond = new Radio();
+        cond.setSelectRadioStation(-1);
+
+        int expected = 0;
+        int actual = cond.getPrevRadioStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void nextRadioStation() {
         Radio cond = new Radio();
         cond.setNextRadioStation(9);
@@ -31,11 +53,44 @@ class RadioTest {
     }
 
     @Test
+    public void nextRadioStationInsideInterval() {
+        Radio cond = new Radio();
+        cond.setNextRadioStation(4);
+
+        int expected = 5;
+        int actual = cond.getNextRadioStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void prevRadioStation() {
         Radio cond = new Radio();
-        cond.setPrevRadioStation(0);
+        cond.setPrevRadioStation(9);
+
+        int expected = 8;
+        int actual = cond.getPrevRadioStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void prevRadioStationBelowInterval() {
+        Radio cond = new Radio();
+        cond.setPrevRadioStation(-1);
 
         int expected = 9;
+        int actual = cond.getPrevRadioStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void prevRadioStationAboveInterval() {
+        Radio cond = new Radio();
+        cond.setPrevRadioStation(10);
+
+        int expected = 0;
         int actual = cond.getPrevRadioStation();
 
         assertEquals(expected, actual);

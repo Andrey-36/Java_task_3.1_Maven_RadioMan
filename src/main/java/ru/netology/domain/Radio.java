@@ -42,7 +42,7 @@ public class Radio {
     }
 
     public int setPrevRadioStation(int currentRadioStation) {
-        if (currentRadioStation < 9) {
+        if (currentRadioStation <= 9) {
             prevRadioStation = currentRadioStation - 1;
         }
         if (currentRadioStation <= 0) {
