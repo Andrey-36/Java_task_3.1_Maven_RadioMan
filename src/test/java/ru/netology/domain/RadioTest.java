@@ -95,4 +95,88 @@ class RadioTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void selectSoundVolume() {
+        Radio cond = new Radio();
+        cond.setSelectSoundVolume(1);
+
+        int expected = 1;
+        int actual = cond.getSelectSoundVolume();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void selectSoundVolumeAboveInterval() {
+        Radio cond = new Radio();
+        cond.setSelectSoundVolume(11);
+
+        int expected = 0;
+        int actual = cond.getSelectSoundVolume();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void selectSoundVolumeBelowInterval() {
+        Radio cond = new Radio();
+        cond.setSelectSoundVolume(-1);
+
+        int expected = 0;
+        int actual = cond.getSelectSoundVolume();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void maximumSoundLevel() {
+        Radio cond = new Radio();
+        cond.setMaximumSoundLevel(9);
+
+        int expected = 10;
+        int actual = cond.getMaximumSoundLevel();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void maximumSoundLevelAboveInterval() {
+        Radio cond = new Radio();
+        cond.setMaximumSoundLevel(10);
+        int expected = 10;
+        int actual = cond.getMaximumSoundLevel();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void maximumSoundLevelBelowInterval() {
+        Radio cond = new Radio();
+        cond.setMaximumSoundLevel(-1);
+        int expected = 0;
+        int actual = cond.getMaximumSoundLevel();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void minimumSoundLevel() {
+        Radio cond = new Radio();
+        cond.setMinimumSoundLevel(0);
+
+        int expected = 0;
+        int actual = cond.getMinimumSoundLevel();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void minimumSoundLevelInsideInterval() {
+        Radio cond = new Radio();
+        cond.setMinimumSoundLevel(2);
+        int expected = 1;
+        int actual = cond.getMinimumSoundLevel();
+
+        assertEquals(expected, actual);
+    }
 }

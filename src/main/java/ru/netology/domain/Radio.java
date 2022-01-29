@@ -51,6 +51,54 @@ public class Radio {
         this.prevRadioStation = prevRadioStation;
         return prevRadioStation;
     }
+
+    private int selectSoundVolume;
+
+    public int getSelectSoundVolume() {
+        return selectSoundVolume;
+    }
+
+    public void setSelectSoundVolume(int selectSoundVolume) {
+        if (selectSoundVolume < 0) {
+            return;
+        }
+        if (selectSoundVolume > 10) {
+            return;
+        }
+        this.selectSoundVolume = selectSoundVolume;
+    }
+
+    private int maximumSoundLevel;
+
+    public int getMaximumSoundLevel() {
+        return maximumSoundLevel;
+    }
+
+    public void setMaximumSoundLevel(int currentSoundLevel) {
+        if (currentSoundLevel >= 10) {
+            maximumSoundLevel = currentSoundLevel;
+        }
+        if (currentSoundLevel < 10) {
+            currentSoundLevel = currentSoundLevel + 1;
+        }
+        this.maximumSoundLevel = currentSoundLevel;
+    }
+
+    private int minimumSoundLevel;
+
+    public int getMinimumSoundLevel() {
+        return minimumSoundLevel;
+    }
+
+    public void setMinimumSoundLevel(int currentSoundLevel) {
+        if (currentSoundLevel == 0) {
+            minimumSoundLevel = currentSoundLevel;
+        }
+        if (currentSoundLevel > 0) {
+            currentSoundLevel = currentSoundLevel - 1;
+        }
+        this.minimumSoundLevel = currentSoundLevel;
+    }
 }
 
 
