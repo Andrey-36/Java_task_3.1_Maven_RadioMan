@@ -18,38 +18,34 @@ public class Radio {
         this.selectRadioStation = selectRadioStation;
     }
 
-    private int nextRadioStation;
 
     public int getNextRadioStation() {
-        return nextRadioStation;
+        return selectRadioStation;
     }
 
-    public int setNextRadioStation(int currentRadioStation) {
-        if (currentRadioStation < 9) {
-            nextRadioStation = currentRadioStation + 1;
+    public void setNextRadioStation() {
+        if (selectRadioStation < 9) {
+            selectRadioStation = selectRadioStation + 1;
         }
-        if (currentRadioStation >= 9) {
-            nextRadioStation = 0;
+        if (selectRadioStation >= 9) {
+            selectRadioStation = 0;
         }
-        this.nextRadioStation = nextRadioStation;
-        return nextRadioStation;
+        this.selectRadioStation = selectRadioStation;
     }
-
-    private int prevRadioStation;
 
     public int getPrevRadioStation() {
-        return prevRadioStation;
+        return selectRadioStation;
     }
 
-    public int setPrevRadioStation(int currentRadioStation) {
-        if (currentRadioStation <= 9) {
-            prevRadioStation = currentRadioStation - 1;
+    public void setPrevRadioStation() {
+        if (selectRadioStation > 0) {
+            selectRadioStation = selectRadioStation - 1;
         }
-        if (currentRadioStation <= 0) {
-            prevRadioStation = 9;
+        if (selectRadioStation <= 0) {
+            selectRadioStation = 9;
         }
-        this.prevRadioStation = prevRadioStation;
-        return prevRadioStation;
+
+        this.selectRadioStation = selectRadioStation;
     }
 
     private int selectSoundVolume;
@@ -68,38 +64,35 @@ public class Radio {
         this.selectSoundVolume = selectSoundVolume;
     }
 
-    private int maximumSoundLevel;
-
     public int getMaximumSoundLevel() {
-        return maximumSoundLevel;
+        return selectSoundVolume;
     }
 
-    public void setMaximumSoundLevel(int currentSoundLevel) {
-        if (currentSoundLevel >= 10) {
-            maximumSoundLevel = currentSoundLevel;
+    public void setMaximumSoundLevel() {
+        if (selectSoundVolume >= 10) {
+            selectSoundVolume = 10;
         }
-        if (currentSoundLevel < 10) {
-            currentSoundLevel = currentSoundLevel + 1;
+        if (selectSoundVolume <= 0) {
+            selectSoundVolume = 0;
+            return;
         }
-        this.maximumSoundLevel = currentSoundLevel;
+        if (selectSoundVolume < 10) {
+            selectSoundVolume = selectSoundVolume + 1;
+        }
+        this.selectSoundVolume = selectSoundVolume;
     }
-
-    private int minimumSoundLevel;
 
     public int getMinimumSoundLevel() {
-        return minimumSoundLevel;
+        return selectSoundVolume;
     }
 
-    public void setMinimumSoundLevel(int currentSoundLevel) {
-        if (currentSoundLevel == 0) {
-            minimumSoundLevel = currentSoundLevel;
+    public void setMinimumSoundLevel() {
+        if (selectSoundVolume <= 0) {
+            selectSoundVolume = 0;
         }
-        if (currentSoundLevel > 0) {
-            currentSoundLevel = currentSoundLevel - 1;
+        if (selectSoundVolume > 0) {
+            selectSoundVolume = selectSoundVolume - 1;
         }
-        this.minimumSoundLevel = currentSoundLevel;
+        this.selectSoundVolume = selectSoundVolume;
     }
 }
-
-
-
