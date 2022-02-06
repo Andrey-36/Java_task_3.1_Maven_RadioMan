@@ -2,97 +2,82 @@ package ru.netology.domain;
 
 public class Radio {
 
-    private int selectRadioStation;
+    private int numberRadioChannel = 10;
+    private int currentRadioStation = 8;
+    private int currentSoundVolume = 100;
 
-    public int getSelectRadioStation() {
-        return selectRadioStation;
+    public Radio() {
     }
 
-    public void setSelectRadioStation(int selectRadioStation) {
-        if (selectRadioStation < 0) {
-            return;
-        }
-        if (selectRadioStation > 9) {
-            return;
-        }
-        this.selectRadioStation = selectRadioStation;
+    public Radio(int numberRadioChannel, int currentSoundVolume) {
+        this.numberRadioChannel = numberRadioChannel;
+        this.currentSoundVolume = currentSoundVolume;
     }
 
-
-    public int getNextRadioStation() {
-        return selectRadioStation;
+    public int getNumberRadioChannel() {
+        return numberRadioChannel;
     }
 
-    public void setNextRadioStation() {
-        if (selectRadioStation < 9) {
-            selectRadioStation = selectRadioStation + 1;
+    public int setNumberRadioChannel() {
+        if (numberRadioChannel < 10) {
+            numberRadioChannel = numberRadioChannel;
         }
-        if (selectRadioStation >= 9) {
-            selectRadioStation = 0;
+        if (numberRadioChannel >= 10) {
+            numberRadioChannel = 10;
         }
-        this.selectRadioStation = selectRadioStation;
+        this.numberRadioChannel = numberRadioChannel;
+        return 0;
     }
 
-    public int getPrevRadioStation() {
-        return selectRadioStation;
+    public int getCurrentRadioStation() {
+        return currentRadioStation;
     }
 
-    public void setPrevRadioStation() {
-        if (selectRadioStation > 0) {
-            selectRadioStation = selectRadioStation - 1;
-        }
-        if (selectRadioStation <= 0) {
-            selectRadioStation = 9;
-        }
+    public void setCurrentRadioStation() {
+        currentRadioStation = numberRadioChannel - 1;
 
-        this.selectRadioStation = selectRadioStation;
+        this.currentRadioStation = currentRadioStation;
     }
 
-    private int selectSoundVolume;
-
-    public int getSelectSoundVolume() {
-        return selectSoundVolume;
+    public int setNextRadioStation() {
+        int nextRadioStation = currentRadioStation + 1;
+        if (nextRadioStation >= numberRadioChannel) {
+            nextRadioStation = 0;
+        }
+        return nextRadioStation;
     }
 
-    public void setSelectSoundVolume(int selectSoundVolume) {
-        if (selectSoundVolume < 0) {
-            return;
+    public int setPrevRadioStation() {
+        int prevRadioStation = currentRadioStation - 1;
+        if (prevRadioStation < 0) {
+            prevRadioStation = currentRadioStation;
         }
-        if (selectSoundVolume > 10) {
-            return;
-        }
-        this.selectSoundVolume = selectSoundVolume;
+        return prevRadioStation;
     }
 
-    public int getMaximumSoundLevel() {
-        return selectSoundVolume;
+    public int getCurrentSoundVolume() {
+        return currentSoundVolume;
     }
 
-    public void setMaximumSoundLevel() {
-        if (selectSoundVolume >= 10) {
-            selectSoundVolume = 10;
+    public void setCurrentSoundVolume() {
+        if (currentSoundVolume > 100) {
+            currentSoundVolume = 100;
         }
-        if (selectSoundVolume <= 0) {
-            selectSoundVolume = 0;
-            return;
+        if (currentSoundVolume < 0) {
+            currentSoundVolume = 0;
         }
-        if (selectSoundVolume < 10) {
-            selectSoundVolume = selectSoundVolume + 1;
-        }
-        this.selectSoundVolume = selectSoundVolume;
+        this.currentSoundVolume = currentSoundVolume;
     }
 
-    public int getMinimumSoundLevel() {
-        return selectSoundVolume;
+    public void nextSoundVolume() {
+        int nextSoundVolume = currentSoundVolume + 1;
+        currentSoundVolume = nextSoundVolume;
+        setCurrentSoundVolume();
     }
 
-    public void setMinimumSoundLevel() {
-        if (selectSoundVolume <= 0) {
-            selectSoundVolume = 0;
-        }
-        if (selectSoundVolume > 0) {
-            selectSoundVolume = selectSoundVolume - 1;
-        }
-        this.selectSoundVolume = selectSoundVolume;
+    public void prevSoundVolume() {
+        int prevSoundVolume = currentSoundVolume - 1;
+        currentSoundVolume = prevSoundVolume;
+        setCurrentSoundVolume();
     }
 }
