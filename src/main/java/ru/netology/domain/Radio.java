@@ -2,97 +2,90 @@ package ru.netology.domain;
 
 public class Radio {
 
-    private int selectRadioStation;
+    private int numberRadioChannel = 10;
+    private int maxRadioStation = 9;
+    private int currentRadioStation = 9;
+    private int currentSoundVolume = 40;
 
-    public int getSelectRadioStation() {
-        return selectRadioStation;
+    public Radio() {
     }
 
-    public void setSelectRadioStation(int selectRadioStation) {
-        if (selectRadioStation < 0) {
-            return;
-        }
-        if (selectRadioStation > 9) {
-            return;
-        }
-        this.selectRadioStation = selectRadioStation;
+    public Radio(int numberRadioChannel, int maxRadioStation, int currentRadioStation, int currentSoundVolume) {
+        this.numberRadioChannel = numberRadioChannel;
+        this.maxRadioStation = maxRadioStation;
+        this.currentRadioStation = currentRadioStation;
+        this.currentSoundVolume = currentSoundVolume;
     }
 
-
-    public int getNextRadioStation() {
-        return selectRadioStation;
+    public int getNumberRadioChannel() {
+        return numberRadioChannel;
     }
 
-    public void setNextRadioStation() {
-        if (selectRadioStation < 9) {
-            selectRadioStation = selectRadioStation + 1;
+    public void setNumberRadioChannel() {
+        if (numberRadioChannel < 10) {
+            numberRadioChannel = numberRadioChannel;
         }
-        if (selectRadioStation >= 9) {
-            selectRadioStation = 0;
+        if (numberRadioChannel >= 10) {
+            numberRadioChannel = 10;
         }
-        this.selectRadioStation = selectRadioStation;
+
+        this.numberRadioChannel = numberRadioChannel;
     }
 
-    public int getPrevRadioStation() {
-        return selectRadioStation;
+    public int maxRadioStation() {
+        return maxRadioStation;
     }
 
-    public void setPrevRadioStation() {
-        if (selectRadioStation > 0) {
-            selectRadioStation = selectRadioStation - 1;
-        }
-        if (selectRadioStation <= 0) {
-            selectRadioStation = 9;
-        }
+    public void setMaxRadioStation() {
+        this.maxRadioStation = numberRadioChannel - 1;
 
-        this.selectRadioStation = selectRadioStation;
     }
 
-    private int selectSoundVolume;
-
-    public int getSelectSoundVolume() {
-        return selectSoundVolume;
+    public int getCurrentRadioStation() {
+        return currentRadioStation;
     }
 
-    public void setSelectSoundVolume(int selectSoundVolume) {
-        if (selectSoundVolume < 0) {
-            return;
+    public void setCurrentRadioStation() {
+        if (currentRadioStation < 0) {
+            currentRadioStation = maxRadioStation;
         }
-        if (selectSoundVolume > 10) {
-            return;
+        if (currentRadioStation > maxRadioStation) {
+            currentRadioStation = 0;
         }
-        this.selectSoundVolume = selectSoundVolume;
+        this.currentRadioStation = currentRadioStation;
     }
 
-    public int getMaximumSoundLevel() {
-        return selectSoundVolume;
+    public void nextRadioStation() {
+        currentRadioStation = currentRadioStation + 1;
+        setCurrentRadioStation();
     }
 
-    public void setMaximumSoundLevel() {
-        if (selectSoundVolume >= 10) {
-            selectSoundVolume = 10;
-        }
-        if (selectSoundVolume <= 0) {
-            selectSoundVolume = 0;
-            return;
-        }
-        if (selectSoundVolume < 10) {
-            selectSoundVolume = selectSoundVolume + 1;
-        }
-        this.selectSoundVolume = selectSoundVolume;
+    public void prevRadioStation() {
+        currentRadioStation = currentRadioStation - 1;
+        setCurrentRadioStation();
     }
 
-    public int getMinimumSoundLevel() {
-        return selectSoundVolume;
+    public int getCurrentSoundVolume() {
+        return currentSoundVolume;
     }
 
-    public void setMinimumSoundLevel() {
-        if (selectSoundVolume <= 0) {
-            selectSoundVolume = 0;
+    public void setCurrentSoundVolume() {
+        if (currentSoundVolume <= 0) {
+            currentSoundVolume = 0;
         }
-        if (selectSoundVolume > 0) {
-            selectSoundVolume = selectSoundVolume - 1;
+        if (currentSoundVolume >= 100) {
+            currentSoundVolume = 100;
         }
-        this.selectSoundVolume = selectSoundVolume;
+        this.currentSoundVolume = currentSoundVolume;
+    }
+
+    public void nextSoundLevel() {
+        currentSoundVolume = currentSoundVolume + 1;
+        setCurrentSoundVolume();
+    }
+
+    public void prevSoundLevel() {
+        currentSoundVolume = currentSoundVolume - 1;
+        setCurrentSoundVolume();
     }
 }
