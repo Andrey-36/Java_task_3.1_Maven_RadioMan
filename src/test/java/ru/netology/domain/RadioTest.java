@@ -10,8 +10,7 @@ class RadioTest {
     public void selectRadioStation() {
         Radio cond = new Radio();
 
-        cond.setSelectRadioStation(7);
-//        cond.currentRadioStation = 9;
+        cond.setSelectRadioStation(7); //        cond.currentRadioStation = 9;
 
         int expected = 7;
         int actual = cond.getSelectRadioStation(); //cond.currentRadioStation;
@@ -44,8 +43,18 @@ class RadioTest {
     @Test
     public void nextRadioStation9() {
         Radio cond = new Radio();
-        cond.setSelectRadioStation(9);
-        cond.setNextRadioStation();
+        cond.setNextRadioStation(9);
+
+        int expected = 0;
+        int actual = cond.getNextRadioStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void nextRadioStationAboveInterval() {
+        Radio cond = new Radio();
+        cond.setNextRadioStation(10);
 
         int expected = 0;
         int actual = cond.getNextRadioStation();
@@ -56,10 +65,9 @@ class RadioTest {
     @Test
     public void nextRadioStationInsideInterval() {
         Radio cond = new Radio();
-        cond.setSelectRadioStation(4);
-        cond.setNextRadioStation();
+        cond.setNextRadioStation(8);
 
-        int expected = 5;
+        int expected = 9;
         int actual = cond.getNextRadioStation();
 
         assertEquals(expected, actual);
@@ -68,8 +76,7 @@ class RadioTest {
     @Test
     public void prevRadioStationZero() {
         Radio cond = new Radio();
-        cond.setSelectRadioStation(0);
-        cond.setPrevRadioStation();
+        cond.setPrevRadioStation(0);
 
         int expected = 9;
         int actual = cond.getPrevRadioStation();
@@ -80,10 +87,9 @@ class RadioTest {
     @Test
     public void prevRadioStation() {
         Radio cond = new Radio();
-        cond.setSelectRadioStation(8);
-        cond.setPrevRadioStation();
+        cond.setPrevRadioStation(1);
 
-        int expected = 7;
+        int expected = 0;
         int actual = cond.getPrevRadioStation();
 
         assertEquals(expected, actual);
@@ -92,8 +98,7 @@ class RadioTest {
     @Test
     public void prevRadioStationAboveInterval() {
         Radio cond = new Radio();
-        cond.setSelectRadioStation(10);
-        cond.setPrevRadioStation();
+        cond.setPrevRadioStation(10);
 
         int expected = 9;
         int actual = cond.getPrevRadioStation();
@@ -104,8 +109,7 @@ class RadioTest {
     @Test
     public void prevRadioStationBelowInterval() {
         Radio cond = new Radio();
-        cond.setSelectRadioStation(-1);
-        cond.setPrevRadioStation();
+        cond.setPrevRadioStation(-1);
 
         int expected = 9;
         int actual = cond.getPrevRadioStation();
@@ -149,8 +153,7 @@ class RadioTest {
     @Test
     public void maximumSoundLevel() {
         Radio cond = new Radio();
-        cond.setSelectSoundVolume(9);
-        cond.setMaximumSoundLevel();
+        cond.setMaximumSoundLevel(9);
 
         int expected = 10;
         int actual = cond.getMaximumSoundLevel();
@@ -161,8 +164,7 @@ class RadioTest {
     @Test
     public void maximumSoundLevelAboveInterval() {
         Radio cond = new Radio();
-        cond.setSelectSoundVolume(10);
-        cond.setMaximumSoundLevel();
+        cond.setMaximumSoundLevel(10);
         int expected = 10;
         int actual = cond.getMaximumSoundLevel();
 
@@ -172,8 +174,7 @@ class RadioTest {
     @Test
     public void maximumSoundLevelZero() {
         Radio cond = new Radio();
-        cond.setSelectSoundVolume(0);
-        cond.setMaximumSoundLevel();
+        cond.setMaximumSoundLevel(0);
         int expected = 0;
         int actual = cond.getMaximumSoundLevel();
         assertEquals(expected, actual);
@@ -182,8 +183,7 @@ class RadioTest {
     @Test
     public void minimumSoundLevel() {
         Radio cond = new Radio();
-        cond.setSelectSoundVolume(0);
-        cond.setMinimumSoundLevel();
+        cond.setMinimumSoundLevel(0);
 
         int expected = 0;
         int actual = cond.getMinimumSoundLevel();
@@ -194,8 +194,7 @@ class RadioTest {
     @Test
     public void minimumSoundLevelInsideInterval() {
         Radio cond = new Radio();
-        cond.setSelectSoundVolume(2);
-        cond.setMinimumSoundLevel();
+        cond.setMinimumSoundLevel(2);
         int expected = 1;
         int actual = cond.getMinimumSoundLevel();
 

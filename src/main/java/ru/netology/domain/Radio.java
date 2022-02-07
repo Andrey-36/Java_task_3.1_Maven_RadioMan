@@ -3,6 +3,7 @@ package ru.netology.domain;
 public class Radio {
 
     private int selectRadioStation;
+    private int selectSoundVolume;
 
     public int getSelectRadioStation() {
         return selectRadioStation;
@@ -18,16 +19,15 @@ public class Radio {
         this.selectRadioStation = selectRadioStation;
     }
 
-
     public int getNextRadioStation() {
         return selectRadioStation;
     }
 
-    public void setNextRadioStation() {
-        if (selectRadioStation < 9) {
+    public void setNextRadioStation(int selectRadioStation) {
+        if (selectRadioStation <= 9) {
             selectRadioStation = selectRadioStation + 1;
         }
-        if (selectRadioStation >= 9) {
+        if (selectRadioStation > 9) {
             selectRadioStation = 0;
         }
         this.selectRadioStation = selectRadioStation;
@@ -37,18 +37,16 @@ public class Radio {
         return selectRadioStation;
     }
 
-    public void setPrevRadioStation() {
-        if (selectRadioStation > 0) {
+    public void setPrevRadioStation(int selectRadioStation) {
+        if (selectRadioStation >= 0) {
             selectRadioStation = selectRadioStation - 1;
         }
-        if (selectRadioStation <= 0) {
+        if (selectRadioStation < 0) {
             selectRadioStation = 9;
         }
 
         this.selectRadioStation = selectRadioStation;
     }
-
-    private int selectSoundVolume;
 
     public int getSelectSoundVolume() {
         return selectSoundVolume;
@@ -68,7 +66,7 @@ public class Radio {
         return selectSoundVolume;
     }
 
-    public void setMaximumSoundLevel() {
+    public void setMaximumSoundLevel(int selectSoundVolume) {
         if (selectSoundVolume >= 10) {
             selectSoundVolume = 10;
         }
@@ -86,7 +84,7 @@ public class Radio {
         return selectSoundVolume;
     }
 
-    public void setMinimumSoundLevel() {
+    public void setMinimumSoundLevel(int selectSoundVolume) {
         if (selectSoundVolume <= 0) {
             selectSoundVolume = 0;
         }
