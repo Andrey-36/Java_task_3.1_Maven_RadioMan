@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 
 public class Radio {
 
@@ -15,10 +16,6 @@ public class Radio {
     private int currentSoundVolume = 40;
 
 
-    public int getNumberRadioChannel() {
-        return numberRadioChannel;
-    }
-
     public void setNumberRadioChannel() {
         if (numberRadioChannel < 10) {
             numberRadioChannel = numberRadioChannel;
@@ -26,7 +23,6 @@ public class Radio {
         if (numberRadioChannel >= 10) {
             numberRadioChannel = 10;
         }
-
         this.numberRadioChannel = numberRadioChannel;
     }
 
@@ -36,11 +32,6 @@ public class Radio {
 
     public void setMaxRadioStation() {
         this.maxRadioStation = numberRadioChannel - 1;
-
-    }
-
-    public int getCurrentRadioStation() {
-        return currentRadioStation;
     }
 
     public void setCurrentRadioStation() {
@@ -61,10 +52,6 @@ public class Radio {
     public void prevRadioStation() {
         currentRadioStation = currentRadioStation - 1;
         setCurrentRadioStation();
-    }
-
-    public int getCurrentSoundVolume() {
-        return currentSoundVolume;
     }
 
     public void setCurrentSoundVolume() {
