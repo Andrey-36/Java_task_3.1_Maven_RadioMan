@@ -5,76 +5,200 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RadioTest {
-    @Test
-    public void numberRadioChannel() {
-        Radio cond = new Radio(5, 0);
-        cond.setNumberRadioChannel();
-        assertEquals(5, cond.getNumberRadioChannel());
-    }
 
     @Test
-    public void numberRadioChannelAboveInterval() {
-        Radio cond = new Radio(11, 0);
-        cond.setNumberRadioChannel();
-        assertEquals(10, cond.getNumberRadioChannel());
-    }
-
-    @Test
-    public void currentRadioStation() {
-        Radio cond = new Radio(5, 0);
-        cond.setCurrentRadioStation();
-        assertEquals(4, cond.getCurrentRadioStation());
-    }
-
-    @Test
-    public void nextRadioStationDefaultLimit() {
+    public void selectRadioStation() {
         Radio cond = new Radio();
+
+        cond.setSelectRadioStation(7);
+//        cond.currentRadioStation = 9;
+
+        int expected = 7;
+        int actual = cond.getSelectRadioStation(); //cond.currentRadioStation;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void selectRadioStationAboveInterval() {
+        Radio cond = new Radio();
+        cond.setSelectRadioStation(10);
+
+        int expected = 0;
+        int actual = cond.getSelectRadioStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void selectRadioStationBelowInterval() {
+        Radio cond = new Radio();
+        cond.setSelectRadioStation(-1);
+
+        int expected = 0;
+        int actual = cond.getSelectRadioStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void nextRadioStation9() {
+        Radio cond = new Radio();
+        cond.setSelectRadioStation(9);
         cond.setNextRadioStation();
-        assertEquals(9, cond.setNextRadioStation());
+
+        int expected = 0;
+        int actual = cond.getNextRadioStation();
+
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void nextRadioStationLimitSet() {
-        Radio cond = new Radio(5, 0);
-        cond.setCurrentRadioStation();
+    public void nextRadioStationInsideInterval() {
+        Radio cond = new Radio();
+        cond.setSelectRadioStation(4);
         cond.setNextRadioStation();
-        assertEquals(0, cond.setNextRadioStation());
+
+        int expected = 5;
+        int actual = cond.getNextRadioStation();
+
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void prevRadioStationDefaultLimit() {
+    public void prevRadioStationZero() {
         Radio cond = new Radio();
-        cond.setCurrentRadioStation();
+        cond.setSelectRadioStation(0);
         cond.setPrevRadioStation();
-        assertEquals(8, cond.setPrevRadioStation());
+
+        int expected = 9;
+        int actual = cond.getPrevRadioStation();
+
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void prevRadioStationLimitSet() {
-        Radio cond = new Radio(1, 0);
-        cond.setCurrentRadioStation();
+    public void prevRadioStation() {
+        Radio cond = new Radio();
+        cond.setSelectRadioStation(8);
         cond.setPrevRadioStation();
-        assertEquals(0, cond.setPrevRadioStation());
+
+        int expected = 7;
+        int actual = cond.getPrevRadioStation();
+
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void currentSoundVolume() {
+    public void prevRadioStationAboveInterval() {
         Radio cond = new Radio();
-        cond.setCurrentSoundVolume();
-        assertEquals(100, cond.getCurrentSoundVolume());
+        cond.setSelectRadioStation(10);
+        cond.setPrevRadioStation();
+
+        int expected = 9;
+        int actual = cond.getPrevRadioStation();
+
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void nextSoundLevelDefaultLimit() {
+    public void prevRadioStationBelowInterval() {
         Radio cond = new Radio();
-        cond.nextSoundVolume();
-        assertEquals(100, cond.getCurrentSoundVolume());
+        cond.setSelectRadioStation(-1);
+        cond.setPrevRadioStation();
+
+        int expected = 9;
+        int actual = cond.getPrevRadioStation();
+
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void prevSoundVolumeLimitSet() {
-        Radio cond = new Radio(5, 0);
-        cond.prevSoundVolume();
-        assertEquals(0, cond.getCurrentSoundVolume());
+    public void selectSoundVolume() {
+        Radio cond = new Radio();
+        cond.setSelectSoundVolume(1);
+
+        int expected = 1;
+        int actual = cond.getSelectSoundVolume();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void selectSoundVolumeAboveInterval() {
+        Radio cond = new Radio();
+        cond.setSelectSoundVolume(11);
+
+        int expected = 0;
+        int actual = cond.getSelectSoundVolume();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void selectSoundVolumeBelowInterval() {
+        Radio cond = new Radio();
+        cond.setSelectSoundVolume(-1);
+
+        int expected = 0;
+        int actual = cond.getSelectSoundVolume();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void maximumSoundLevel() {
+        Radio cond = new Radio();
+        cond.setSelectSoundVolume(9);
+        cond.setMaximumSoundLevel();
+
+        int expected = 10;
+        int actual = cond.getMaximumSoundLevel();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void maximumSoundLevelAboveInterval() {
+        Radio cond = new Radio();
+        cond.setSelectSoundVolume(10);
+        cond.setMaximumSoundLevel();
+        int expected = 10;
+        int actual = cond.getMaximumSoundLevel();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void maximumSoundLevelZero() {
+        Radio cond = new Radio();
+        cond.setSelectSoundVolume(0);
+        cond.setMaximumSoundLevel();
+        int expected = 0;
+        int actual = cond.getMaximumSoundLevel();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void minimumSoundLevel() {
+        Radio cond = new Radio();
+        cond.setSelectSoundVolume(0);
+        cond.setMinimumSoundLevel();
+
+        int expected = 0;
+        int actual = cond.getMinimumSoundLevel();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void minimumSoundLevelInsideInterval() {
+        Radio cond = new Radio();
+        cond.setSelectSoundVolume(2);
+        cond.setMinimumSoundLevel();
+        int expected = 1;
+        int actual = cond.getMinimumSoundLevel();
+
+        assertEquals(expected, actual);
     }
 }
