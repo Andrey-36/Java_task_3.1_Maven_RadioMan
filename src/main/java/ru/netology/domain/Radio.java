@@ -9,9 +9,8 @@ public class Radio {
     public Radio() {
     }
 
-    public Radio(int numberRadioChannel, int currentSoundVolume) {
+    public Radio(int numberRadioChannel) {
         this.numberRadioChannel = numberRadioChannel;
-        this.currentSoundVolume = currentSoundVolume;
     }
 
     public int getNumberRadioChannel() {
@@ -59,7 +58,7 @@ public class Radio {
         return currentSoundVolume;
     }
 
-    public void setCurrentSoundVolume() {
+    public void setCurrentSoundVolume(int currentSoundVolume) {
         if (currentSoundVolume > 100) {
             currentSoundVolume = 100;
         }
@@ -72,12 +71,12 @@ public class Radio {
     public void nextSoundVolume() {
         int nextSoundVolume = currentSoundVolume + 1;
         currentSoundVolume = nextSoundVolume;
-        setCurrentSoundVolume();
+//        setCurrentSoundVolume();
     }
 
     public void prevSoundVolume() {
         int prevSoundVolume = currentSoundVolume - 1;
         currentSoundVolume = prevSoundVolume;
-        setCurrentSoundVolume();
+//        setCurrentSoundVolume();
     }
 }
