@@ -3,8 +3,10 @@ package ru.netology.domain;
 public class Radio {
 
     private int numberRadioChannel = 10;
-    private int currentRadioStation = 8;
+    private int currentRadioStation;
     private int currentSoundVolume = 100;
+    private int nextRadioStation;
+    private int prevRadioStation;
 
     public Radio() {
     }
@@ -25,7 +27,7 @@ public class Radio {
             numberRadioChannel = 10;
         }
         this.numberRadioChannel = numberRadioChannel;
-        return 0;
+        return numberRadioChannel;
     }
 
     public int getCurrentRadioStation() {
@@ -33,25 +35,32 @@ public class Radio {
     }
 
     public void setCurrentRadioStation() {
+        setNumberRadioChannel();
         currentRadioStation = numberRadioChannel - 1;
-
         this.currentRadioStation = currentRadioStation;
     }
 
-    public int setNextRadioStation() {
-        int nextRadioStation = currentRadioStation + 1;
-        if (nextRadioStation >= numberRadioChannel) {
-            nextRadioStation = 0;
-        }
+    public int getNextRadioStation() {
         return nextRadioStation;
     }
 
-    public int setPrevRadioStation() {
-        int prevRadioStation = currentRadioStation - 1;
-        if (prevRadioStation < 0) {
-            prevRadioStation = currentRadioStation;
+    public void setNextRadioStation(int currentRadioStation) {
+        nextRadioStation = currentRadioStation + 1;
+        if (nextRadioStation >= numberRadioChannel - 1) {
+            nextRadioStation = 0;
         }
+        nextRadioStation = nextRadioStation;
+    }
+
+    public int getPrevRadioStation() {
         return prevRadioStation;
+    }
+
+    public void setPrevRadioStation(int currentRadioStation) {
+        prevRadioStation = currentRadioStation - 1;
+        if (prevRadioStation < 0) {
+            prevRadioStation = numberRadioChannel - 1;
+        }
     }
 
     public int getCurrentSoundVolume() {

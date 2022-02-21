@@ -21,40 +21,39 @@ class RadioTest {
 
     @Test
     public void currentRadioStation() {
-        Radio cond = new Radio(5);
-        cond.setCurrentRadioStation();
-        assertEquals(4, cond.getCurrentRadioStation());
-    }
-
-    @Test
-    public void nextRadioStationDefaultLimit() {
-        Radio cond = new Radio();
-        cond.setNextRadioStation();
-        assertEquals(9, cond.setNextRadioStation());
-    }
-
-    @Test
-    public void nextRadioStationLimitSet() {
-        Radio cond = new Radio(5);
-        cond.setCurrentRadioStation();
-        cond.setNextRadioStation();
-        assertEquals(0, cond.setNextRadioStation());
-    }
-
-    @Test
-    public void prevRadioStationDefaultLimit() {
-        Radio cond = new Radio();
-        cond.setCurrentRadioStation();
-        cond.setPrevRadioStation();
-        assertEquals(8, cond.setPrevRadioStation());
-    }
-
-    @Test
-    public void prevRadioStationLimitSet() {
         Radio cond = new Radio(1);
         cond.setCurrentRadioStation();
-        cond.setPrevRadioStation();
-        assertEquals(0, cond.setPrevRadioStation());
+        assertEquals(0, cond.getCurrentRadioStation());
+    }
+
+    @Test
+    public void nextRadioStationDefaultLimitRadioChannel() {
+        Radio cond = new Radio();
+        cond.setNextRadioStation(9);
+        assertEquals(0, cond.getNextRadioStation());
+    }
+
+    @Test
+    public void nextRadioStationLimitSetRadioChannel() {
+        Radio cond = new Radio(20);
+        cond.setNumberRadioChannel();
+        cond.setNextRadioStation(0);
+        assertEquals(1, cond.getNextRadioStation());
+    }
+
+    @Test
+    public void prevRadioStationDefaultLimitRadioChannel() {
+        Radio cond = new Radio();
+        cond.setPrevRadioStation(9);
+        assertEquals(8, cond.getPrevRadioStation());
+    }
+
+    @Test
+    public void prevRadioStation20Chanel() {
+        Radio cond = new Radio(20);
+        cond.setCurrentRadioStation();
+        cond.setPrevRadioStation(0);
+        assertEquals(9, cond.getPrevRadioStation());
     }
 
     @Test
@@ -83,7 +82,6 @@ class RadioTest {
     public void prevSoundVolume() {
         Radio cond = new Radio();
         cond.setCurrentSoundVolume(1);
-//        cond.setPrevRadioStation();
         cond.prevSoundVolume();
         assertEquals(0, cond.getCurrentSoundVolume());
     }
